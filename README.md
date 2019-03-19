@@ -1,5 +1,6 @@
-# Ohjelmistotekniikka-harjoitustyö <h1>
-## Readme <h2>
+# Ohjelmistotekniikka, harjoitustyö <h1>
+## Tehtävät <h2>
+## Viikko1 <h3>
 
-Tämä on **ohjelmistotekniikka**-kurssin readme. 
-*Minä* en ole ihan varma mitä muuta täällä pitäisi lukea.
+[komentorivi.txt](https://github.com/henripalin/ot-harjoitustyo/blob/master/laskarit/komentorivi.txt)
+[gitlog.txt](https://github.com/henripalin/ot-harjoitustyo/blob/master/laskarit/gitlog.txt)
