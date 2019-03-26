@@ -9,4 +9,5 @@
 [testikattavuudet.png](https://github.com/henripalin/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuudet.png)
   
 ## Kurssikuulustelija <h2>
+[Vaatimuusmäärittely](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/vaatimuusmaarittely.md)
 [Työaikakirjanpito](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/tuntikirjanpito.md)
