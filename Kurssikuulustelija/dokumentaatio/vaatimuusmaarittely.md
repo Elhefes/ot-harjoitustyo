@@ -21,7 +21,7 @@ lisätä ylläpitäjän rooli sovellukseen.
 Jos jää aikaa, voi miettiä seuraavien ominaisuuksien toteuttamista ohjelmaan
 * Kysymysten muokkaus ja poisto
 * Käyttäjä voi nähdä visuaalisia tilastoja edistymisestään
-* "Dynammisten kysymysten" lisäys
+* "Dynaamisten kysymysten" lisäys
   * Sellaisia kysymyksiä, joissa olisi muuttujia (esimerkiksi matematiikan laskutehtävässä voisi arpoa lausekkeen arvot ja laskea
     kullekkin tehtävälle oikeat vastaukset
 * Käyttäjät voivat arvostella muiden tekemiä kysymyksiä
