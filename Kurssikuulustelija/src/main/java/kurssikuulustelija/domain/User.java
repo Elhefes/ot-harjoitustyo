@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package kurssikuulustelija.domain;
 
 /**
  *
  * @author henripal
  */
 public class User {
+    private int id;
     private String username;
     private String password;
     
@@ -24,11 +25,6 @@ public class User {
     
     public String getPassword() {
         return this.password;
-    }
-    
-    public boolean checkCredentials(String username, String password) {
-        if (username.equals(this.username) && password.equals(this.password)) return true;
-        return false;
     }
     
 }
