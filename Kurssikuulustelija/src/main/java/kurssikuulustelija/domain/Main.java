@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javafx.application.Application.launch;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.jdbc.core.JdbcTemplate;
 import kurssikuulustelija.ui.UserInterface;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,14 +23,22 @@ import kurssikuulustelija.ui.UserInterface;
  *
  * @author henripal
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class Main {
     
     public static void main(String[] args) {
-        SpringApplication.run(Main.class);
+//        SpringApplication.run(Main.class);
         //formatDatabase();
         launch(UserInterface.class);
     }
+    
+//    @Autowired
+//    UserInterface ui;
+//
+//    public void run(String... args) throws Exception {
+//        Stage window = new Stage();
+//        ui.start(window);
+//    }
     
     public static void formatDatabase() {
         try (Connection conn = DriverManager.getConnection("jdbc:h2:./kurssikuulustelija", "sa", "")) {
@@ -41,6 +50,5 @@ public class Main {
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }  
-    
+    }      
 }
