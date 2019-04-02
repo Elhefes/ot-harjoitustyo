@@ -1,14 +1,30 @@
-# Ohjelmistotekniikka, harjoitustyö <h1>
-## Tehtävät <h2>
-## Viikko 1 <h3>
-[komentorivi.txt](https://github.com/henripalin/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-  
-[gitlog.txt](https://github.com/henripalin/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+# Kurssikuulustelija <h1>
 
-## Viikko 2 <h3>
-[testikattavuudet.png](https://github.com/henripalin/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuudet.png)
-  
-## Kurssikuulustelija <h2>
+### Dokumentaatio
 [Vaatimuusmäärittely](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/vaatimuusmaarittely.md)
   
 [Työaikakirjanpito](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/tuntikirjanpito.md)
+
+### Testaus
+
+Repositorion kloonauksen jälkeen testit voidaan suorittaa komennolla
+
+```
+mvn test
+```
+
+Testikattavuusraportti luodaan komennolla
+
+```
+mvn jacoco:report
+```
+
+Kattavuusraporttia löytyy sijainnista _target/site/jacoco/index.html_
+
+### Suoritettavan jarin generointi
+
+```
+mvn package
+```
+
+löytyy hakemistosta _target
