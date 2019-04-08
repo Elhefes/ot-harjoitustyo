@@ -6,5 +6,5 @@
 
 <suppressions>
     <suppress files="kurssikuulustelija.ui.GUI.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="kurssikuulustelija.ui.ApplicationSupport.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="kurssikuulustelija.ui.JavaFxSpringService.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

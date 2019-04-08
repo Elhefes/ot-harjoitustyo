@@ -5,14 +5,13 @@ package kurssikuulustelija.ui;
  * @author henripal
  */
 import javafx.application.Application;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class ApplicationSupport extends Application {
+public abstract class JavaFxSpringService extends Application {
     
-    static ConfigurableApplicationContext applicationContext;
+    private static ConfigurableApplicationContext applicationContext;
 
     @Override
     public void init() throws Exception {
@@ -26,7 +25,7 @@ public abstract class ApplicationSupport extends Application {
         applicationContext.close();
     }
 
-    public static void launchApp(Class<? extends ApplicationSupport> appClass, String[] args, ConfigurableApplicationContext appContext) {
+    public static void launchApp(Class<? extends JavaFxSpringService> appClass, String[] args, ConfigurableApplicationContext appContext) {
         applicationContext = appContext;
         Application.launch(appClass, args);
     }

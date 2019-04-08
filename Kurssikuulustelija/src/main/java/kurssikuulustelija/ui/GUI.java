@@ -19,7 +19,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import kurssikuulustelija.domain.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
@@ -27,7 +26,7 @@ import org.springframework.stereotype.Component;
  * @author henripal
  */
 @Component
-public class GUI extends ApplicationSupport {
+public class GUI extends JavaFxSpringService {
 
     private Scene loginScene;
     private Scene courseScene;
@@ -176,6 +175,7 @@ public class GUI extends ApplicationSupport {
                     stage.setScene(courseScene);
                 } else {
                     infoText.setText("Käyttäjätunnus tai salasana on väärä");
+                    passwordField.clear();
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -286,6 +286,4 @@ public class GUI extends ApplicationSupport {
         stage.setTitle("Valitse kurssi");
         stage.show();
     }
-
-
 }
