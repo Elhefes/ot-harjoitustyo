@@ -197,6 +197,8 @@ public class GUI extends ApplicationSupport {
                     } else {
                         userDao.create(newAccount);
                         infoText.setText("Uusi käyttäjätunnus luotu!");
+                        usernameField.clear();
+                        passwordField.clear();
                     }
 
                 } else {
@@ -212,43 +214,27 @@ public class GUI extends ApplicationSupport {
             currentCourse = "Tietokoneen toiminta";
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(settingsScene);
-            try {
-                userDao.create(new User("testi", "testi"));
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         });
 
         tiraButton.setOnAction(e -> {
             currentCourse = "Tietorakenteet ja algoritmit";
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(settingsScene);
-            try {
-                userDao.create(new User("testi", "testi"));
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         });
 
         tikapeButton.setOnAction(e -> {
             currentCourse = "Tietokantojen perusteet";
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(settingsScene);
-            try {
-                userDao.create(new User("testi", "testi"));
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         });
 
         backToCourseScene.setOnAction(e -> {
             stage.setTitle("Valitse kurssi");
             stage.setScene(courseScene);
-            try {
-                userDao.create(new User("testi", "testi"));
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+  
         });
 
         exerciseButton.setOnAction(e -> {
