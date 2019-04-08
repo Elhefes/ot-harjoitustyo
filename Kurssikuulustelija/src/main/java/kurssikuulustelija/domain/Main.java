@@ -5,41 +5,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javafx.application.Application.launch;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.jdbc.core.JdbcTemplate;
-import kurssikuulustelija.ui.UserInterface;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import kurssikuulustelija.ui.GUI;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
  * @author henripal
  */
-//@SpringBootApplication
+@SpringBootApplication
+@ComponentScan ({"kurssikuulustelija.ui", "kurssikuulustelija.dao"})
 public class Main {
-    
+    static ConfigurableApplicationContext applicationContext;
+
     public static void main(String[] args) {
-//        SpringApplication.run(Main.class);
+        applicationContext = SpringApplication.run(Main.class, args);
+        GUI.launchApp(GUI.class, args, applicationContext);
         //formatDatabase();
-        launch(UserInterface.class);
     }
     
-//    @Autowired
-//    UserInterface ui;
-//
-//    public void run(String... args) throws Exception {
-//        Stage window = new Stage();
-//        ui.start(window);
-//    }
-    
+    //DELETES AND RE-CREATES ALL SQL TABLES
     public static void formatDatabase() {
         try (Connection conn = DriverManager.getConnection("jdbc:h2:./kurssikuulustelija", "sa", "")) {
             conn.prepareStatement("DROP TABLE User IF EXISTS;").executeUpdate();
