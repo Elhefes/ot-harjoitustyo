@@ -19,15 +19,15 @@ Testikattavuusraportti luodaan komennolla
 ```
 mvn jacoco:report
 ```
+Kattavuusraporttia löytyy sijainnista _target/site/jacoco/index.html_
+
 Checkstyle-dokumentti saadaan luotua komennolla
 
-...
+```
 mvn jxr:jxr checkstyle:checkstyle
-...
-
+```
 Komennon jälkeen html-dokumentti löytyy sijainnista _target/site/checkstyle.html
 
-Kattavuusraporttia löytyy sijainnista _target/site/jacoco/index.html_
 
 ### Suoritettavan jarin generointi
 
