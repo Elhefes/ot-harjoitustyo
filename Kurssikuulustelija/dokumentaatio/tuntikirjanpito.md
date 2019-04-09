@@ -6,3 +6,4 @@ Päivä | Aika | Mitä tein
 28.3. | 3 | Koodasin Dao-luokkia eteenpäin, korjailin bugeja
 2.4.|3| Käyttöliittymän jatkamista, tehtävien koodausta. En saanut Springiä toimimaan javaFX:n kanssa, täytyy jatkaa myöhemmin sitä.
 8.4.|3| Sain SQL-tietokannan toimimaan, siivoilin koodeja ja korjasin bugeja
+9.4.|2| Testien lisäilyä
