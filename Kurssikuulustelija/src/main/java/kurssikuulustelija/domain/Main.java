@@ -33,7 +33,7 @@ public class Main {
             conn.prepareStatement("DROP TABLE Exercise IF EXISTS;").executeUpdate();
             
             conn.prepareStatement("CREATE TABLE User(id INTEGER AUTO_INCREMENT, username VARCHAR(100), password VARCHAR(100), PRIMARY KEY (id));").executeUpdate();
-            conn.prepareStatement("CREATE TABLE Exercise(id INTEGER AUTO_INCREMENT, question VARCHAR(100), answer VARCHAR(100), PRIMARY KEY (id));").executeUpdate();
+            conn.prepareStatement("CREATE TABLE Exercise(id INTEGER AUTO_INCREMENT, course VARCHAR(100), question VARCHAR(100), answer VARCHAR(100), PRIMARY KEY (id));").executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

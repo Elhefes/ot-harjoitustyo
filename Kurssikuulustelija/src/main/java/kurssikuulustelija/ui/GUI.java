@@ -17,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import kurssikuulustelija.dao.ExerciseDao;
 import kurssikuulustelija.domain.Exercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,10 +36,10 @@ public class GUI extends JavaFxSpringService {
     private Scene exerciseScene;
     private String currentCourse = "";
 
-    List<Exercise> exercises = new ArrayList<>();  //tilapäinen talletuspaikka
-
     @Autowired
     UserDao userDao;
+    @Autowired
+    ExerciseDao exerciseDao;
 
     public void start(Stage stage) throws SQLException {
 
@@ -240,13 +241,9 @@ public class GUI extends JavaFxSpringService {
         exerciseButton.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(exerciseScene);
-            if (exercises.isEmpty()) exerciseText.setText("Ei kysymyksiä tällä kurssilla vielä.");
-            else exerciseText.setText(exercises.get(0).getQuestion());
-            try {
-                userDao.create(new User("testi", "testi"));
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Exercise exercise = exerciseDao.getRandom(currentCourse);
+            if (exercise == null) exerciseText.setText("Ei kysymyksiä tällä kurssilla vielä.");
+            else exerciseText.setText(exercise.getQuestion());
         });
 
         createExercises.setOnAction(e -> {
@@ -260,13 +257,15 @@ public class GUI extends JavaFxSpringService {
         });
 
         submitNewExercise.setOnAction(e -> {
-            exercises.add(new Exercise(currentCourse, questionField.getText(), answerField.getText()));
+            String exerciseQuestion = questionField.getText();
+            String exerciseAnswer = answerField.getText();
+            Exercise exercise = new Exercise(currentCourse, exerciseQuestion, exerciseAnswer);
             questionField.clear();
             answerField.clear();
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(settingsScene);
             try {
-                userDao.create(new User("testi", "testi"));
+                exerciseDao.create(exercise);
             } catch (SQLException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
