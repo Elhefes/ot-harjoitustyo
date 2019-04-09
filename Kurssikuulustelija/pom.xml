@@ -62,6 +62,7 @@
 		<configuration>
 			<excludes>
 				<exclude>kurssikuulustelija/ui/</exclude>
+				<exclude>kurssikuulustelija/domain/Main.class</exclude>
 			</excludes>
 		</configuration>
                 <executions>
