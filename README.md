@@ -6,6 +6,8 @@ Tällä hetkellä sovelluksessa on lähes valmis käyttöliittymä, mutta sovell
   
 [Työaikakirjanpito](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/tuntikirjanpito.md)
 
+[Arkkitehtuuri](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/arkkitehtuuri.md)
+
 ### Testaus
 
 Repositorion kloonauksen jälkeen testit voidaan suorittaa komennolla
