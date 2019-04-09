@@ -25,7 +25,6 @@ public class UserDao implements Dao<User, Integer> {
                 + " VALUES (?, ?)",
                 user.getUsername(),
                 user.getPassword()); 
-        
     }
     
     public User findByUsername(User user) throws SQLException {
@@ -46,8 +45,6 @@ public class UserDao implements Dao<User, Integer> {
     public List<User> list() throws SQLException {
         List<User> list = jdbcTemplate.query("SELECT * FROM User", (rs, rowNum) -> new User(rs.getString("username"), rs.getString("password")));
         return list;
-    }
-    
-    
+    } 
     
 }

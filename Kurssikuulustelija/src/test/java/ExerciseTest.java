@@ -18,28 +18,10 @@ import org.junit.Test;
  */
 public class ExerciseTest {
     
-    public ExerciseTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-    
     @Test
     public void creatingExerciseWorks() {
         Exercise exercise = new Exercise("Tietorakenteet ja algoritmit", "Mikä on kurssin lyhenne?", "Tira");
         assertEquals("Mikä on kurssin lyhenne?", exercise.getQuestion());
+        assertEquals("Tira", exercise.getAnswer());
     }
 }
