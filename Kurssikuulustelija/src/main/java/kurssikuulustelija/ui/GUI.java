@@ -3,8 +3,6 @@ package kurssikuulustelija.ui;
 import kurssikuulustelija.dao.UserDao;
 import kurssikuulustelija.domain.User;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
@@ -15,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import kurssikuulustelija.dao.ExerciseDao;
@@ -42,7 +41,7 @@ public class GUI extends JavaFxSpringService {
     @Autowired
     ExerciseDao exerciseDao;
 
-    public void start(Stage stage) throws SQLException {
+    public void start(Stage stage) {
 
         //loginScene
         
@@ -74,16 +73,18 @@ public class GUI extends JavaFxSpringService {
 
         //courseScene
         
-        Button logOutButton = new Button("Log out");
+        Button logOutButton = new Button("Kirjaudu ulos");
         Label infoLabel = new Label("Valitse kurssi, jonka tehtäviä haluat harjoitella");
         Button titoButton = new Button("Tietokoneen toiminta");
         Button tiraButton = new Button("Tietorakenteet ja algoritmit");
         Button tikapeButton = new Button("Tietokantojen perusteet");
 
+        BorderPane coursePlacement = new BorderPane();
         GridPane list = new GridPane();
         GridPane coursePane = new GridPane();
 
-        list.add(logOutButton, 0, 0);
+        coursePlacement.setTop(logOutButton);
+        coursePlacement.setCenter(coursePane);
         list.add(titoButton, 1, 0);
         list.add(tiraButton, 2, 0);
         list.add(tikapeButton, 3, 0);
@@ -98,17 +99,19 @@ public class GUI extends JavaFxSpringService {
         coursePane.setHgap(10);
         coursePane.setPadding(new Insets(20, 20, 20, 20));
 
-        courseScene = new Scene(coursePane);
+        courseScene = new Scene(coursePlacement);
 
         //settingsScene
         
+        BorderPane settingsPlacement = new BorderPane();
         Button backToCourseScene = new Button("Takaisin");
         Label courseTitle = new Label(currentCourse);
         Button exerciseButton = new Button("Harjoittele tehtäviä");
         Button createExercises = new Button("Luo uusia tehtäviä");
 
         GridPane settingsPane = new GridPane();
-        settingsPane.add(backToCourseScene, 0, 0);
+        settingsPlacement.setTop(backToCourseScene);
+        settingsPlacement.setCenter(settingsPane);
         settingsPane.add(courseTitle, 0, 1);
         settingsPane.add(exerciseButton, 0, 2);
         settingsPane.add(createExercises, 0, 3);
@@ -119,10 +122,12 @@ public class GUI extends JavaFxSpringService {
         settingsPane.setHgap(10);
         settingsPane.setPadding(new Insets(20, 20, 20, 20));
 
-        settingsScene = new Scene(settingsPane);
+        settingsScene = new Scene(settingsPlacement);
 
         //createExerciseScene
         
+        BorderPane createExercisePlacement = new BorderPane();
+        Button backToSettingsButton = new Button("Takaisin");
         Label createExerciseInfo = new Label("Kirjoita kysymys ja oikea vastaus luodaksesi uuden tehtävän kurssiin " + currentCourse);
         Label question = new Label("Tehtävänanto:");
         TextArea questionField = new TextArea();
@@ -130,7 +135,9 @@ public class GUI extends JavaFxSpringService {
         TextArea answerField = new TextArea();
         Button submitNewExercise = new Button("Luo kysymys!");
 
+        createExercisePlacement.setTop(backToSettingsButton);
         GridPane exerciseCreatorPane = new GridPane();
+        createExercisePlacement.setCenter(exerciseCreatorPane);
         exerciseCreatorPane.add(createExerciseInfo, 0, 0);
         exerciseCreatorPane.add(question, 0, 1);
         exerciseCreatorPane.add(questionField, 0, 2);
@@ -144,18 +151,20 @@ public class GUI extends JavaFxSpringService {
         exerciseCreatorPane.setHgap(10);
         exerciseCreatorPane.setPadding(new Insets(20, 20, 20, 20));
 
-        exerciseCreatorScene = new Scene(exerciseCreatorPane);
+        exerciseCreatorScene = new Scene(createExercisePlacement);
 
         //exerciseScene
         
-        Button backToSettingsButton = new Button("Takaisin");
+        BorderPane exercisePlacement = new BorderPane();
+        Button backToSettingsButton2 = new Button("Takaisin");
         Label exerciseText = new Label("");
         TextArea answerArea = new TextArea();
         Button submitAnswer = new Button("Tarkista");
         Button correctAnswerButton = new Button("Näytä vastaus");
 
+        exercisePlacement.setTop(backToSettingsButton2);
         GridPane exercisePane = new GridPane();
-        exercisePane.add(backToSettingsButton, 0, 0);
+        exercisePlacement.setCenter(exercisePane);
         exercisePane.add(exerciseText, 0, 1);
         exercisePane.add(answerArea, 0, 2);
         exercisePane.add(submitAnswer, 0, 3);
@@ -167,11 +176,20 @@ public class GUI extends JavaFxSpringService {
         exercisePane.setHgap(10);
         exercisePane.setPadding(new Insets(20, 20, 20, 20));
 
-        exerciseScene = new Scene(exercisePane);
+        exerciseScene = new Scene(exercisePlacement);
+        
+        //buttons' functionality
 
         loginButton.setOnAction(e -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
+            if (username.equals("debug")) {  //List every user to commandline
+                try {
+                    userDao.list().forEach(System.out::println);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             User user = new User(0, username, password);
             try {
                 currentUser = userDao.checkCredentialsAndReturnUser(user);
@@ -281,6 +299,12 @@ public class GUI extends JavaFxSpringService {
         });
         
         backToSettingsButton.setOnAction(e -> {
+            stage.setTitle("Kurssikuulustelija");
+            stage.setScene(settingsScene);
+
+        });
+        
+        backToSettingsButton2.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(settingsScene);
 

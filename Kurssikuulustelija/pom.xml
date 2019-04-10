@@ -79,6 +79,7 @@
       		<artifactId>maven-checkstyle-plugin</artifactId>
       		<version>2.17</version>
       		<configuration>
+			<mainClass>kurssikuulustelija.domain.Main</mainClass>
         		<configLocation>checkstyle.xml</configLocation>
       		</configuration>
     		</plugin>
@@ -86,7 +87,23 @@
       			<groupId>org.apache.maven.plugins</groupId>
       			<artifactId>maven-jxr-plugin</artifactId>
       			<version>2.5</version>
-    		</plugin> 
+    		</plugin>
+		<plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.6.0</version>
+                    <configuration>
+                        <classpathScope>test</classpathScope>
+                        <mainClass>kurssikuulustelija.domain.Main</mainClass>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>run-selenium</id>
+                            <phase>integration-test</phase>
+                            <goals><goal>java</goal></goals>
+                        </execution>
+                    </executions>
+                </plugin>
         </plugins>
 
     </build>
