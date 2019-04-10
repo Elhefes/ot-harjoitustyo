@@ -35,6 +35,7 @@ public class GUI extends JavaFxSpringService {
     private Scene exerciseCreatorScene;
     private Scene exerciseScene;
     private String currentCourse = "";
+    private User currentUser;
 
     @Autowired
     UserDao userDao;
@@ -73,6 +74,7 @@ public class GUI extends JavaFxSpringService {
 
         //courseScene
         
+        Button logOutButton = new Button("Log out");
         Label infoLabel = new Label("Valitse kurssi, jonka tehtäviä haluat harjoitella");
         Button titoButton = new Button("Tietokoneen toiminta");
         Button tiraButton = new Button("Tietorakenteet ja algoritmit");
@@ -81,9 +83,10 @@ public class GUI extends JavaFxSpringService {
         GridPane list = new GridPane();
         GridPane coursePane = new GridPane();
 
-        list.add(titoButton, 0, 0);
-        list.add(tiraButton, 1, 0);
-        list.add(tikapeButton, 2, 0);
+        list.add(logOutButton, 0, 0);
+        list.add(titoButton, 1, 0);
+        list.add(tiraButton, 2, 0);
+        list.add(tikapeButton, 3, 0);
         coursePane.add(infoLabel, 0, 0);
         coursePane.add(list, 0, 1);
 
@@ -169,11 +172,16 @@ public class GUI extends JavaFxSpringService {
         loginButton.setOnAction(e -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
-            User user = new User(username, password);
+            User user = new User(0, username, password);
             try {
-                if (userDao.checkCredentials(user) != null) {
+                currentUser = userDao.checkCredentialsAndReturnUser(user);
+                if (currentUser != null) {
+                    infoText.setText(" ");
                     stage.setTitle("Valitse kurssi");
                     stage.setScene(courseScene);
+                    usernameField.clear();
+                    passwordField.clear();
+                    System.out.println("UserId #" + currentUser.getId() + " logged in.");
                 } else {
                     infoText.setText("Käyttäjätunnus tai salasana on väärä");
                     passwordField.clear();
@@ -190,8 +198,7 @@ public class GUI extends JavaFxSpringService {
             String password = passwordField.getText();
             try {
                 if (username.length() > 3 && password.length() > 3) {
-                    User newAccount = new User(username, password);
-                    System.out.println(username + " " + password);
+                    User newAccount = new User(0, username, password);
                     User result = userDao.findByUsername(newAccount);
                     if (result != null) {
                         infoText.setText("Käyttäjätunnus on jo olemassa");
@@ -208,6 +215,12 @@ public class GUI extends JavaFxSpringService {
             } catch (SQLException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+        });
+        
+        logOutButton.setOnAction(e -> {
+            stage.setTitle("Kirjaudu sisään Kurssikuulustelijaan");
+            stage.setScene(loginScene);
 
         });
 
@@ -249,11 +262,7 @@ public class GUI extends JavaFxSpringService {
         createExercises.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(exerciseCreatorScene);
-            try {
-                userDao.create(new User("testi", "testi"));
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         });
 
         submitNewExercise.setOnAction(e -> {
@@ -274,15 +283,11 @@ public class GUI extends JavaFxSpringService {
         backToSettingsButton.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(settingsScene);
-            try {
-                userDao.create(new User("testi", "testi"));
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         });
 
         stage.setScene(loginScene);
-        stage.setTitle("Valitse kurssi");
+        stage.setTitle("Kirjaudu sisään Kurssikuulustelijaan");
         stage.show();
     }
 }
