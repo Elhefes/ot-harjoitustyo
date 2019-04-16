@@ -4,23 +4,20 @@
  * and open the template in the editor.
  */
 
-import kurssikuulustelija.dao.ExerciseDao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author henripal
  */
-public class ExerciseDaoTest {
+public class PointDaoTest {
     
-    @Autowired
-    ExerciseDao exerciseDaoTest;
-    
-    public ExerciseDaoTest() {
+    public PointDaoTest() {
     }
     
     @BeforeClass

@@ -30,14 +30,18 @@ public class UserDao implements Dao<User, Integer> {
     public User findByUsername(User user) throws SQLException {
         List<User> targets = jdbcTemplate.query("SELECT * FROM User WHERE username = ?", (rs, rowNum) -> 
                 new User(rs.getInt("id"), rs.getString("username"), rs.getString("password")), user.getUsername());
-        if (targets.isEmpty()) return null;
+        if (targets.isEmpty()) {
+            return null;
+        }
         return targets.get(0);
     }
     
     public User checkCredentialsAndReturnUser(User user) throws SQLException {
         List<User> targets = jdbcTemplate.query("SELECT * FROM User WHERE username = ? AND password = ?", (rs, rowNum) -> 
                 new User(rs.getInt("id"), rs.getString("username"), rs.getString("password")), user.getUsername(), user.getPassword());
-        if (targets.isEmpty()) return null;
+        if (targets.isEmpty()) {
+            return null;
+        }
         return targets.get(0);
     }
     

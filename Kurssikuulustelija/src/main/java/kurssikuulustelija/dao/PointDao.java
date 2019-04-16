@@ -30,7 +30,9 @@ public class PointDao implements Dao<Point, Integer> {
     public int getUserPoints(String course, int userId) {
         List<Integer> target = jdbcTemplate.query("SELECT DISTINCT exerciseId FROM Point WHERE course = ? AND userId = ?", (rs, rowNum) -> 
                 rs.getInt("exerciseId"), course, userId);
-        if (target.isEmpty()) return 0;
+        if (target.isEmpty()) {
+            return 0;
+        }
         return target.size();
     }
     
