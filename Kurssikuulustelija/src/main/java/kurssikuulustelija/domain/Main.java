@@ -23,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
         applicationContext = SpringApplication.run(Main.class, args);
         GUI.launchApp(GUI.class, args, applicationContext);
-        //formatDatabase();
+        formatDatabase();
     }
     
     //DELETES AND RE-CREATES ALL SQL TABLES
