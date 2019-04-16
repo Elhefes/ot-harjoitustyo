@@ -17,7 +17,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import kurssikuulustelija.dao.ExerciseDao;
+import kurssikuulustelija.dao.PointDao;
 import kurssikuulustelija.domain.Exercise;
+import kurssikuulustelija.domain.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,11 +37,14 @@ public class GUI extends JavaFxSpringService {
     private Scene exerciseScene;
     private String currentCourse = "";
     private User currentUser;
+    private Exercise currentExercise;
 
     @Autowired
     UserDao userDao;
     @Autowired
     ExerciseDao exerciseDao;
+    @Autowired
+    PointDao pointDao;
 
     public void start(Stage stage) {
 
@@ -85,6 +90,7 @@ public class GUI extends JavaFxSpringService {
 
         coursePlacement.setTop(logOutButton);
         coursePlacement.setCenter(coursePane);
+        coursePlacement.setPadding(new Insets(10, 10, 10, 10));
         list.add(titoButton, 1, 0);
         list.add(tiraButton, 2, 0);
         list.add(tikapeButton, 3, 0);
@@ -93,7 +99,7 @@ public class GUI extends JavaFxSpringService {
 
         list.setVgap(10);
         list.setHgap(10);
-        coursePane.setPrefSize(700, 200);
+        coursePane.setPrefSize(800, 500);
         coursePane.setAlignment(Pos.CENTER);
         coursePane.setVgap(10);
         coursePane.setHgap(10);
@@ -105,14 +111,18 @@ public class GUI extends JavaFxSpringService {
         
         BorderPane settingsPlacement = new BorderPane();
         Button backToCourseScene = new Button("Takaisin");
-        Label courseTitle = new Label(currentCourse);
+        Label courseTitle = new Label("");
+        Label exercisesCompleted = new Label("");
         Button exerciseButton = new Button("Harjoittele tehtäviä");
         Button createExercises = new Button("Luo uusia tehtäviä");
+        exerciseButton.setDefaultButton(true);
+        settingsPlacement.setPadding(new Insets(10, 10, 10, 10));
 
         GridPane settingsPane = new GridPane();
         settingsPlacement.setTop(backToCourseScene);
         settingsPlacement.setCenter(settingsPane);
-        settingsPane.add(courseTitle, 0, 1);
+        settingsPane.add(courseTitle, 0, 0);
+        settingsPane.add(exercisesCompleted, 0, 1);
         settingsPane.add(exerciseButton, 0, 2);
         settingsPane.add(createExercises, 0, 3);
 
@@ -134,6 +144,7 @@ public class GUI extends JavaFxSpringService {
         Label answer = new Label("Oikea vastaus:");
         TextArea answerField = new TextArea();
         Button submitNewExercise = new Button("Luo kysymys!");
+        createExercisePlacement.setPadding(new Insets(10, 10, 10, 10));
 
         createExercisePlacement.setTop(backToSettingsButton);
         GridPane exerciseCreatorPane = new GridPane();
@@ -159,16 +170,20 @@ public class GUI extends JavaFxSpringService {
         Button backToSettingsButton2 = new Button("Takaisin");
         Label exerciseText = new Label("");
         TextArea answerArea = new TextArea();
+        Label indicator = new Label("");
         Button submitAnswer = new Button("Tarkista");
         Button correctAnswerButton = new Button("Näytä vastaus");
+        submitAnswer.setDefaultButton(true);
+        exercisePlacement.setPadding(new Insets(10, 10, 10, 10));
 
         exercisePlacement.setTop(backToSettingsButton2);
         GridPane exercisePane = new GridPane();
         exercisePlacement.setCenter(exercisePane);
         exercisePane.add(exerciseText, 0, 1);
         exercisePane.add(answerArea, 0, 2);
-        exercisePane.add(submitAnswer, 0, 3);
-        exercisePane.add(correctAnswerButton, 0, 4);
+        exercisePane.add(indicator, 0, 3);
+        exercisePane.add(submitAnswer, 0, 4);
+        exercisePane.add(correctAnswerButton, 0, 5);
 
         exercisePane.setPrefSize(800, 500);
         exercisePane.setAlignment(Pos.CENTER);
@@ -189,26 +204,26 @@ public class GUI extends JavaFxSpringService {
                 } catch (SQLException ex) {
                     Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            User user = new User(0, username, password);
-            try {
-                currentUser = userDao.checkCredentialsAndReturnUser(user);
-                if (currentUser != null) {
-                    infoText.setText(" ");
-                    stage.setTitle("Valitse kurssi");
-                    stage.setScene(courseScene);
-                    usernameField.clear();
-                    passwordField.clear();
-                    System.out.println("UserId #" + currentUser.getId() + " logged in.");
-                } else {
-                    infoText.setText("Käyttäjätunnus tai salasana on väärä");
-                    passwordField.clear();
+            } else {
+                User user = new User(0, username, password);
+                try {
+                    currentUser = userDao.checkCredentialsAndReturnUser(user);
+                    if (currentUser != null) {
+                        infoText.setText(" ");
+                        stage.setTitle("Valitse kurssi");
+                        stage.setScene(courseScene);
+                        usernameField.clear();
+                        passwordField.clear();
+                        System.out.println("UserId #" + currentUser.getId() + " logged in.");
+                    } else {
+                        infoText.setText("Käyttäjätunnus tai salasana on väärä");
+                        passwordField.clear();
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            infoText.setText("Käyttäjätunnus tai salasana on väärä");
-
+            
         });
 
         registerButton.setOnAction(e -> {
@@ -245,22 +260,28 @@ public class GUI extends JavaFxSpringService {
         titoButton.setOnAction(e -> {
             currentCourse = "Tietokoneen toiminta";
             stage.setTitle("Kurssikuulustelija");
+            exercisesCompleted.setText("Tehtäviä suoritettu: " + pointDao.getUserPoints(currentCourse, currentUser.getId()) 
+                    + "/" + exerciseDao.getCourseExerciseAmount(currentCourse));
             stage.setScene(settingsScene);
-
+            courseTitle.setText(currentCourse);
         });
 
         tiraButton.setOnAction(e -> {
             currentCourse = "Tietorakenteet ja algoritmit";
             stage.setTitle("Kurssikuulustelija");
+            exercisesCompleted.setText("Tehtäviä suoritettu: " + pointDao.getUserPoints(currentCourse, currentUser.getId()) 
+                    + "/" + exerciseDao.getCourseExerciseAmount(currentCourse));
             stage.setScene(settingsScene);
-
+            courseTitle.setText(currentCourse);
         });
 
         tikapeButton.setOnAction(e -> {
             currentCourse = "Tietokantojen perusteet";
             stage.setTitle("Kurssikuulustelija");
+            exercisesCompleted.setText("Tehtäviä suoritettu: " + pointDao.getUserPoints(currentCourse, currentUser.getId()) 
+                    + "/" + exerciseDao.getCourseExerciseAmount(currentCourse));
             stage.setScene(settingsScene);
-
+            courseTitle.setText(currentCourse);
         });
 
         backToCourseScene.setOnAction(e -> {
@@ -272,9 +293,13 @@ public class GUI extends JavaFxSpringService {
         exerciseButton.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(exerciseScene);
-            Exercise exercise = exerciseDao.getRandom(currentCourse);
-            if (exercise == null) exerciseText.setText("Ei kysymyksiä tällä kurssilla vielä.");
-            else exerciseText.setText(exercise.getQuestion());
+            Exercise exercise = exerciseDao.getRandom(currentCourse);            
+            if (exercise == null) {
+                exerciseText.setText("Ei kysymyksiä tällä kurssilla vielä.");
+            } else {
+                exerciseText.setText(exercise.getQuestion());
+                currentExercise = exercise;
+            }
         });
 
         createExercises.setOnAction(e -> {
@@ -286,30 +311,77 @@ public class GUI extends JavaFxSpringService {
         submitNewExercise.setOnAction(e -> {
             String exerciseQuestion = questionField.getText();
             String exerciseAnswer = answerField.getText();
-            Exercise exercise = new Exercise(currentCourse, exerciseQuestion, exerciseAnswer);
+            Exercise exercise = new Exercise(0, currentCourse, exerciseQuestion, exerciseAnswer);
             questionField.clear();
             answerField.clear();
             stage.setTitle("Kurssikuulustelija");
             stage.setScene(settingsScene);
+            submitAnswer.setVisible(true);
             try {
                 exerciseDao.create(exercise);
             } catch (SQLException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+            exercisesCompleted.setText("Tehtäviä suoritettu: " + pointDao.getUserPoints(currentCourse, currentUser.getId()) 
+                    + "/" + exerciseDao.getCourseExerciseAmount(currentCourse));
         });
         
         backToSettingsButton.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
+            exercisesCompleted.setText("Tehtäviä suoritettu: " + pointDao.getUserPoints(currentCourse, currentUser.getId()) 
+                    + "/" + exerciseDao.getCourseExerciseAmount(currentCourse));
             stage.setScene(settingsScene);
 
         });
         
         backToSettingsButton2.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
+            exercisesCompleted.setText("Tehtäviä suoritettu: " + pointDao.getUserPoints(currentCourse, currentUser.getId()) 
+                    + "/" + exerciseDao.getCourseExerciseAmount(currentCourse));
             stage.setScene(settingsScene);
 
         });
+        
+        submitAnswer.setOnAction(e -> {
+            if (submitAnswer.getText().equals("Seuraava")) {
+                Exercise exercise = exerciseDao.getRandom(currentCourse);
+                currentExercise = exercise;
+                correctAnswerButton.setVisible(true);
+                indicator.setText("");
+                answerArea.clear();
+                submitAnswer.setText("Tarkista");
+                exerciseText.setText(exercise.getQuestion());
+            } else {
+                String givenAnswer = answerArea.getText();
+                if (givenAnswer.equals("debug")) {                      //List every exercise to commandline
+                    exerciseDao.list().forEach(System.out::println);
+                } else {
+                    if (givenAnswer.equals(exerciseDao.getAnswer(currentExercise.getId()))) {
+                        Point point = new Point(currentCourse, currentUser.getId(), currentExercise.getId());
+                        try {
+                            pointDao.create(point);
+                            //pointDao.list().forEach(System.out::println);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        indicator.setText("Oikein!");
+                        submitAnswer.setText("Seuraava");
+                        correctAnswerButton.setVisible(false);
+                    } else {
+                        indicator.setText("Väärä vastaus.");
+                    }
+                }
+                
+            }
+            
+        });
 
+        correctAnswerButton.setOnAction(e -> {
+            answerArea.setText(exerciseDao.getAnswer(currentExercise.getId()));
+            submitAnswer.setText("Seuraava");
+            correctAnswerButton.setVisible(false);
+        });
+        
         stage.setScene(loginScene);
         stage.setTitle("Kirjaudu sisään Kurssikuulustelijaan");
         stage.show();

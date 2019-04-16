@@ -31,9 +31,11 @@ public class Main {
         try (Connection conn = DriverManager.getConnection("jdbc:h2:./kurssikuulustelija", "sa", "")) {
             conn.prepareStatement("DROP TABLE User IF EXISTS;").executeUpdate();
             conn.prepareStatement("DROP TABLE Exercise IF EXISTS;").executeUpdate();
+            conn.prepareStatement("DROP TABLE Point IF EXISTS;").executeUpdate();
             
             conn.prepareStatement("CREATE TABLE User(id INTEGER AUTO_INCREMENT, username VARCHAR(100), password VARCHAR(100), PRIMARY KEY (id));").executeUpdate();
             conn.prepareStatement("CREATE TABLE Exercise(id INTEGER AUTO_INCREMENT, course VARCHAR(100), question VARCHAR(100), answer VARCHAR(100), PRIMARY KEY (id));").executeUpdate();
+            conn.prepareStatement("CREATE TABLE Point(id INTEGER AUTO_INCREMENT, course VARCHAR(100), userId INTEGER, exerciseId INTEGER, PRIMARY KEY (id));").executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

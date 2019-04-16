@@ -20,7 +20,7 @@ public class ExerciseTest {
     
     @Test
     public void creatingExerciseWorks() {
-        Exercise exercise = new Exercise("Tietorakenteet ja algoritmit", "Mikä on kurssin lyhenne?", "Tira");
+        Exercise exercise = new Exercise(0, "Tietorakenteet ja algoritmit", "Mikä on kurssin lyhenne?", "Tira");
         assertEquals("Tietorakenteet ja algoritmit", exercise.getCourse());
         assertEquals("Mikä on kurssin lyhenne?", exercise.getQuestion());
         assertEquals("Tira", exercise.getAnswer());

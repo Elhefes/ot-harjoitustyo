@@ -36,12 +36,27 @@ public class ExerciseDao implements Dao<Exercise, Integer> {
     
     public Exercise getRandom(String currentCourse) {
         List<Exercise> targets = jdbcTemplate.query("SELECT * FROM Exercise WHERE course = ? ORDER BY RAND() LIMIT 1", (rs, rowNum) -> 
-                new Exercise(rs.getString("course"), rs.getString("question"), rs.getString("answer")), currentCourse);
+                new Exercise(rs.getInt("id"), rs.getString("course"), rs.getString("question"), rs.getString("answer")), currentCourse);
         if (targets.isEmpty()) return null;
         return targets.get(0);
     }
     
+    public String getAnswer(int id) {
+        List<Exercise> target = jdbcTemplate.query("SELECT * FROM Exercise WHERE id = ?", (rs, rowNum) -> 
+                new Exercise(rs.getInt("id"), rs.getString("course"), rs.getString("question"), rs.getString("answer")), id);
+        if (target.isEmpty()) return null;
+        return target.get(0).getAnswer();
+    }
+    
+    public int getCourseExerciseAmount(String course) {
+        List<Exercise> list = jdbcTemplate.query("SELECT * FROM Exercise WHERE course = ?", (rs, rowNum) -> 
+                new Exercise(rs.getInt("id"), rs.getString("course"), rs.getString("question"), rs.getString("answer")), course);
+        return list.size();
+    }
+    
     public List<Exercise> list() {
-        return null;
+        List<Exercise> list = jdbcTemplate.query("SELECT * FROM Exercise", (rs, rowNum) -> 
+                new Exercise(rs.getInt("id"), rs.getString("course"), rs.getString("question"), rs.getString("answer")));
+        return list;
     }
 }
