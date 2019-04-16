@@ -8,3 +8,4 @@ Päivä | Aika | Mitä tein
 8.4.|3| Sain SQL-tietokannan toimimaan, siivoilin koodeja ja korjasin bugeja
 9.4.|2| Testien lisäilyä
 10.4.|1| Indeksien lisäys toimimaan
+16.4.|3| Loin exercise-toiminnot, SQL-koodin hiomista
