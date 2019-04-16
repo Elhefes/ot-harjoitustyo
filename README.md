@@ -1,5 +1,5 @@
 # Kurssikuulustelija <h1>
-Tällä hetkellä sovelluksessa on lähes valmis käyttöliittymä. Perusominaisuudet löytyy myös. Ohjelmassa voi luoda uuden käyttäjän, kirjautua sisään, luoda uusia kysymyksiä sekä katsella kysymyksiä.
+Tällä hetkellä sovelluksessa on lähes valmis käyttöliittymä. Perusominaisuudet löytyy myös. Ohjelmassa voi luoda uuden käyttäjän, kirjautua sisään, luoda uusia kysymyksiä, vastata kysymyksiä sekä nähdä, kuinka monta kysymystä kyseisestä kurssista on suorittanut.
 
 ### Releaset
 [Viikko5](https://github.com/henripalin/ot-harjoitustyo/releases/tag/viikko5)
