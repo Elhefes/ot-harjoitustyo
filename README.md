@@ -53,3 +53,4 @@ Javadocin saat generoitua komennolla
 ```
 mvn javadoc:javadoc
 ```
+jonka jälkeen javadoc-dokumentti löytyy polusta _target/site/apidocs
