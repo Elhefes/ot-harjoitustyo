@@ -4,7 +4,7 @@ Sovelluksen avulla on mahdollista kerrata eri kurssejen aihe-alueita
 vastaamalla kursseihin liittyviin kysymyksiin. Sovellus on kätevä apu
 esimerkiksi tenttiin kertaamisessa. Sovellusta voi käyttää useampi
 rekisteröitynyt käyttäjä, jolloin näkee tilastoja oppimistaan asioista.
-## Käyttäjät <h2>
+## Käyttäjät
 Alkuvaiheessa on ainoastaan normaalikäyttäjärooli, mutta myöhemmin saatetaan
 lisätä ylläpitäjän rooli sovellukseen.
 
