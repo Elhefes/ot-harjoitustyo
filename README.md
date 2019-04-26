@@ -45,3 +45,11 @@ mvn package
 ```
 
 löytyy hakemistosta _target
+
+### Javadocin generointi
+
+Javadocin saat generoitua komennolla
+
+´´´
+mvn javadoc:javadoc
+```
