@@ -50,6 +50,6 @@ löytyy hakemistosta _target
 
 Javadocin saat generoitua komennolla
 
-´´´
+```
 mvn javadoc:javadoc
 ```
