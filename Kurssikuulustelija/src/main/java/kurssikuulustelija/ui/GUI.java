@@ -24,8 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
- * @author henripal
+ * Luokka huolehtii sovelluksen käyttöliittymän 
+ * muodostamisesta.
  */
 @Component
 public class GUI extends JavaFxSpringService {
