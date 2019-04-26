@@ -17,6 +17,10 @@ Sovelluksen käyttöliittymä sisältää viisi erilaista "Sceneä" eli näkymä
 
 # Sovelluslogiikka
 
+Sovelluksen loogisen datamallin muodostaa _kurssikuulustelija.domain_ -pakkauksesta löytyvät luokat [User](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/src/main/java/kurssikuulustelija/domain/User.java), [Exercise](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/src/main/java/kurssikuulustelija/domain/Exercise.java) sekä [Point](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/src/main/java/kurssikuulustelija/domain/Point.java).
+
+Sovelluksen toiminnallisuudesta pitää huolen lähinnä _kurssikuulustelija.dao_ -pakkauksen dao-luokat. Niiden avulla tietokantaan lisätään käyttäjiä, tehtäviä sekä pisteitä tehdyistä tehtävistä. Lisäksi _GUI_ -luokassa on jonkin verran sovelluslogiikkaa, mutta pyrin erottamaan sitä uuteen luokkaan kun kerkiän.
+
 <img src="https://raw.githubusercontent.com/henripalin/ot-harjoitustyo/master/Kurssikuulustelija/dokumentaatio/kuvat/classDiagram.png">
 
 # Tietojen talletus
