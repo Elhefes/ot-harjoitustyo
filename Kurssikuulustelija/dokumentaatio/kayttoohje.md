@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [täältä](https://github.com/henripalin/ot-harjoitustyo/releases/tag/viikko5)
+Lataa tiedosto [täältä](https://github.com/henripalin/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Ohjelman käynnistäminen
 
