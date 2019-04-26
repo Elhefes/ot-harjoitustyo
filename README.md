@@ -5,6 +5,8 @@ Tällä hetkellä sovelluksessa on lähes valmis käyttöliittymä. Perusominais
 [Viikko5](https://github.com/henripalin/ot-harjoitustyo/releases/tag/viikko5)
 
 ### Dokumentaatio
+[Käyttöohje](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/kayttoohje.md)
+
 [Vaatimuusmäärittely](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/vaatimuusmaarittely.md)
   
 [Työaikakirjanpito](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/tuntikirjanpito.md)
