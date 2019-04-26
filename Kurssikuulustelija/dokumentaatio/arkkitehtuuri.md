@@ -1,4 +1,4 @@
 # Arkkitehtuurikuvaus
 ## Rakenne
 
-<img src="https://github.com/henripalin/ot-harjoitustyo/tree/master/Kurssikuulustelija/dokumentaatio/kuvat/classDiagram.png">
+<img src="https://raw.githubusercontent.com/henripalin/ot-harjoitustyo/master/Kurssikuulustelija/dokumentaatio/kuvat/classDiagram.png">
