@@ -304,6 +304,7 @@ public class GUI extends JavaFxSpringService {
 
         createExercises.setOnAction(e -> {
             stage.setTitle("Kurssikuulustelija");
+            createExerciseInfo.setText("Kirjoita kysymys ja oikea vastaus luodaksesi uuden tehtävän kurssiin " + currentCourse);
             stage.setScene(exerciseCreatorScene);
 
         });
@@ -356,7 +357,7 @@ public class GUI extends JavaFxSpringService {
                 if (givenAnswer.equals("debug")) {                      //List every exercise to commandline
                     exerciseDao.list().forEach(System.out::println);
                 } else {
-                    if (givenAnswer.equals(exerciseDao.getAnswer(currentExercise.getId()))) {
+                    if (givenAnswer.toLowerCase().equals(exerciseDao.getAnswer(currentExercise.getId()).toLowerCase())) {
                         Point point = new Point(currentCourse, currentUser.getId(), currentExercise.getId());
                         try {
                             pointDao.create(point);

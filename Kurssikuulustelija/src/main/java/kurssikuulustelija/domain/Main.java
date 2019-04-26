@@ -19,16 +19,23 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan ({"kurssikuulustelija.ui", "kurssikuulustelija.dao"})
 public class Main {
     static ConfigurableApplicationContext applicationContext;
+    static String jdbcString = "jdbc:h2:./kurssikuulustelija";
 
     public static void main(String[] args) {
         applicationContext = SpringApplication.run(Main.class, args);
+        //FIRST LAUNCH SETUP
+        try (Connection conn = DriverManager.getConnection(jdbcString, "sa", "")) {
+            conn.prepareStatement("SELECT 1 FROM User LIMIT 1").execute();
+        } catch (SQLException ex) {
+            formatDatabase();
+        }
         GUI.launchApp(GUI.class, args, applicationContext);
         //formatDatabase();
     }
     
     //DELETES AND RE-CREATES ALL SQL TABLES
     public static void formatDatabase() {
-        try (Connection conn = DriverManager.getConnection("jdbc:h2:./kurssikuulustelija", "sa", "")) {
+        try (Connection conn = DriverManager.getConnection(jdbcString, "sa", "")) {
             conn.prepareStatement("DROP TABLE User IF EXISTS;").executeUpdate();
             conn.prepareStatement("DROP TABLE Exercise IF EXISTS;").executeUpdate();
             conn.prepareStatement("DROP TABLE Point IF EXISTS;").executeUpdate();
