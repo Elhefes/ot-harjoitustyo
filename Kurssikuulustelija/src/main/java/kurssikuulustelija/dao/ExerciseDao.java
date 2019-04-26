@@ -41,6 +41,7 @@ public class ExerciseDao implements Dao<Exercise, Integer> {
     /**
      * Metodi hakee tietokannasta satunnaisen tehtävän.
      * ja palauttaa sen
+     * @param currentCourse kurssin nimi
      * @return Exercise-olio
      */
     public Exercise getRandom(String currentCourse) {
@@ -68,6 +69,7 @@ public class ExerciseDao implements Dao<Exercise, Integer> {
     
     /**
      * Metodi laskee tehtävien määrän tietokannassa
+     * @param course kurssin nimi
      * @return tehtävien määrä.
      */
     public int getCourseExerciseAmount(String course) {

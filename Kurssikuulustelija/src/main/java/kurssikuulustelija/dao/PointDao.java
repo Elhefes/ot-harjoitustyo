@@ -19,7 +19,7 @@ public class PointDao implements Dao<Point, Integer> {
     
     /**
      * Metodi luo tietokantaan uuden pisteen käyttäjälle.
-     * @param exercise Point-olio
+     * @param point Point-olio
      */
     @Override
     public void create(Point point) throws SQLException {

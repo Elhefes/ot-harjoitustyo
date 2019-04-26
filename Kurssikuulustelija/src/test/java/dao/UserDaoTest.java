@@ -6,9 +6,11 @@ package dao;
  * and open the template in the editor.
  */
 
+import java.sql.SQLException;
+import java.util.List;
 import kurssikuulustelija.dao.UserDao;
-import org.junit.Assert;
-import org.junit.Before;
+import kurssikuulustelija.domain.User;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,25 +29,26 @@ public class UserDaoTest {
 //    
 //    @Autowired
 //    UserDao userDao;
+//    
 //    @Autowired
 //    JdbcTemplate jdbcTemplate;
-//    
-//    @Before
-//    public void setUp() {
-//        
-//    }
+////    
+////    @Before
+////    public void setUp() {
+////        
+////    }
 //    
 //    @Test
 //    public void createWorks() {
-//        Assert.assertNotNull(userDao);
-//        User user = new User("Chuck", "Norris");
+//        //Assert.assertNotNull(userDao);
+//        User user = new User(1, "Chuck", "Norris");
 //        try {
 //            userDao.create(user);
 //        } catch (SQLException ex) {
-//            Logger.getLogger(UserDaoTest.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println(ex.getMessage());
 //        }
 //        List<User> target = jdbcTemplate.query("SELECT * FROM User WHERE username = Chuck AND password = Norris", (rs, rowNum) -> 
-//                new User(rs.getString("username"), rs.getString("password")));
+//                new User(0, rs.getString("username"), rs.getString("password")));
 //        assertEquals("Chuck", target.get(0).getUsername());
 //        assertEquals("Norris", target.get(0).getPassword());
 //    }
