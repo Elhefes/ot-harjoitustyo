@@ -225,7 +225,7 @@ public class GUI extends JavaFxSpringService {
             }
             
         });
-
+        
         registerButton.setOnAction(e -> {
             String username = usernameField.getText();
             String password = passwordField.getText();

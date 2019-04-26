@@ -17,6 +17,10 @@ public class PointDao implements Dao<Point, Integer> {
     @Autowired
     JdbcTemplate jdbcTemplate;
     
+    /**
+     * Metodi luo tietokantaan uuden pisteen käyttäjälle.
+     * @param exercise Point-olio
+     */
     @Override
     public void create(Point point) throws SQLException {
         jdbcTemplate.update("INSERT INTO Point"
@@ -27,6 +31,13 @@ public class PointDao implements Dao<Point, Integer> {
                 point.getExerciseId());
     }
     
+    /**
+     * Metodi tarkastaa, kuinka monta tehtävää
+     * käyttäjä on suorittanut kurssista.
+     * @param course kurssin nimi
+     * @param userId kurssin id
+     * @return käyttäjän pisteet
+     */
     public int getUserPoints(String course, int userId) {
         List<Integer> target = jdbcTemplate.query("SELECT DISTINCT exerciseId FROM Point WHERE course = ? AND userId = ?", (rs, rowNum) -> 
                 rs.getInt("exerciseId"), course, userId);
@@ -36,6 +47,11 @@ public class PointDao implements Dao<Point, Integer> {
         return target.size();
     }
     
+    /**
+     * Metodi palauttaa kaikki tietokannassa olevat
+     * pisteet listana.
+     * @return Point-lista
+     */
     public List<Point> list() {
         List<Point> list = jdbcTemplate.query("SELECT * FROM Point", (rs, rowNum) -> 
                 new Point(rs.getString("course"), rs.getInt("userId"), rs.getInt("exerciseId")));
