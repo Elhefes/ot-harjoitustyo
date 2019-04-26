@@ -1,1 +1,4 @@
-![alt text](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/classDiagram.png)
+# Arkkitehtuurikuvaus
+## Rakenne
+
+![alt text](https://github.com/henripalin/ot-harjoitustyo/tree/master/Kurssikuulustelija/dokumentaatio/kuvat/classDiagram.png)
