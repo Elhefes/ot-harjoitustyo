@@ -13,6 +13,8 @@ import java.util.List;
  * @author henripal
  */
 public interface Dao<T, K> {
+
     void create(T object) throws SQLException;
+
     List<T> list() throws SQLException;
 }
