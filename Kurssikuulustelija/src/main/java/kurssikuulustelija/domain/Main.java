@@ -27,6 +27,7 @@ public class Main {
         //FIRST LAUNCH SETUP
         try (Connection conn = DriverManager.getConnection(jdbcString, "sa", "")) {
             conn.prepareStatement("SELECT 1 FROM User LIMIT 1").execute();
+            conn.close();
         } catch (SQLException ex) {
             formatDatabase();
         }
