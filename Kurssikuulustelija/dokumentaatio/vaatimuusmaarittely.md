@@ -5,8 +5,7 @@ vastaamalla kursseihin liittyviin kysymyksiin. Sovellus on kätevä apu
 esimerkiksi tenttiin kertaamisessa. Sovellusta voi käyttää useampi
 rekisteröitynyt käyttäjä, jolloin näkee tilastoja oppimistaan asioista.
 ## Käyttäjät
-Alkuvaiheessa on ainoastaan normaalikäyttäjärooli, mutta myöhemmin saatetaan
-lisätä ylläpitäjän rooli sovellukseen.
+Sovelluksessa on vain yksi käyttäjärooli, ns normaali käyttäjä. Kaikilla on samat oikeudet.
 
 ## Perusversion tarjoama toiminnallisuus
 * Käyttäjä voi luoda tunnuksen sovellukseen
