@@ -17,6 +17,8 @@ Kurssikuulustelija on sovellus, jolla käyttäjä voi luoda tiettyyn kurssiin ha
 
 [Arkkitehtuuri](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/arkkitehtuuri.md)
 
+[Testausdokumentti](https://github.com/henripalin/ot-harjoitustyo/blob/master/Kurssikuulustelija/dokumentaatio/testausdokumentti.md)
+
 ### Testaus
 
 Repositorion kloonauksen jälkeen testit voidaan suorittaa komennolla
