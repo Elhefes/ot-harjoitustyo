@@ -2,6 +2,8 @@
 Kurssikuulustelija on sovellus, jolla käyttäjä voi luoda tiettyyn kurssiin harjoitustehtäviä, sekä harjoitella niitä. Sovellukseen on mahdollisuus tehdä monia eri käyttäjiä, ja sovellus pitää tietoa siitä, mitä tehtäviä kukin käyttäjä on jo ratkaissut.
 
 ### Releaset
+[Viikko7](https://github.com/henripalin/ot-harjoitustyo/releases/tag/Viikko7)
+
 [Viikko6](https://github.com/henripalin/ot-harjoitustyo/releases/tag/viikko6)
 
 [Viikko5](https://github.com/henripalin/ot-harjoitustyo/releases/tag/viikko5)
