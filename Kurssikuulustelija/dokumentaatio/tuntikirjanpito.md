@@ -10,4 +10,5 @@ Päivä | Aika | Mitä tein
 10.4.|1| Indeksien lisäys toimimaan
 16.4.|3| Loin exercise-toiminnot, SQL-koodin hiomista
 26.4.|3| Dokumentaation lisäystä, sovelluksen bugien korjausta
-Yht|23|
+5.5.|5| Loin paljon JUnit testejä, hioin koodia loppupalautukseen
+Yht|28|
