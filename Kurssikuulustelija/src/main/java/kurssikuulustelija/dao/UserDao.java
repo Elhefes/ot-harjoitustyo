@@ -30,11 +30,7 @@ public class UserDao implements Dao<User, Integer> {
     public UserDao() {
         try {
             Connection connection = DriverManager.getConnection(jdbcString + "kurssikuulustelija", "sa", "");
-            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS User (\n"
-                    + "id INTEGER PRIMARY KEY,\n"
-                    + "username varchar(100),\n"
-                    + "password varchar(100),\n"
-                    + ");");
+            PreparedStatement statement = connection.prepareStatement(stmt);
             statement.execute();
             statement.close();
             connection.close();
