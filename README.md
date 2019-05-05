@@ -39,7 +39,7 @@ Checkstyle-dokumentti saadaan luotua komennolla
 ```
 mvn jxr:jxr checkstyle:checkstyle
 ```
-Komennon jälkeen html-dokumentti löytyy sijainnista _target/site/checkstyle.html
+Komennon jälkeen html-dokumentti löytyy sijainnista _target/site/checkstyle.html_
 
 
 ### Suoritettavan jarin generointi
@@ -48,7 +48,7 @@ Komennon jälkeen html-dokumentti löytyy sijainnista _target/site/checkstyle.ht
 mvn package
 ```
 
-löytyy hakemistosta _target
+löytyy hakemistosta _target_
 
 ### Javadocin generointi
 
@@ -57,4 +57,4 @@ Javadocin saat generoitua komennolla
 ```
 mvn javadoc:javadoc
 ```
-jonka jälkeen javadoc-dokumentti löytyy polusta _target/site/apidocs
+jonka jälkeen javadoc-dokumentti löytyy polusta _target/site/apidocs_
